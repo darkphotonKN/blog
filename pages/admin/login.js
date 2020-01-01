@@ -1,3 +1,5 @@
+import Router from 'next/router';
+
 import AdminLayout from '../../components/shared/Layout/AdminLayout';
 
 import { loginUser } from '../../utils/auth';
@@ -16,10 +18,14 @@ class Login extends React.Component {
 
     loginUser(username, password)
       .then((res) => {
+        // reject unauthorized users
         if (!res) {
           return Promise.reject();
         }
+
+        // redirect authorized users
         console.log('Logged in, response was:', res);
+        Router.push('/admin/profile');
       })
       .catch((err) => {
         this.setState({

@@ -65,39 +65,39 @@ export const fetchPublicData = async (endpoint) => {
  * @param endpoint - API request endpoint
  */
 export const fetchData = async (endpoint) => {
-  let token = '';
   let response = [];
 
-  if (typeof window !== 'undefined') {
-    // acquire user auth token
-    token = getToken();
+  // if (typeof window !== 'undefined') {
+  //   // acquire user auth token
+  //   token = getToken();
 
-    // if token is no present, user is not authenticated therefore logout and redirect
-    if (!token) {
-      // logoutUser(); // optional logout if user token unavailable
-      return; // exits rest of fn call
-    }
-  }
+  //   // if token is no present, user is not authenticated therefore logout and redirect
+  //   if (!token) {
+  //     // logoutUser(); // optional logout if user token unavailable
+  //     return; // exits rest of fn call
+  //   }
+  // }
 
-  const headers = {
-    headers: {
-      Authorization: token
-    }
-  };
+  // const headers = {
+  //   headers: {
+  //     Authorization: token
+  //   }
+  // };
 
   try {
-    response = await axios.get(endpoint, headers);
+    response = await axios.get(endpoint);
   } catch (err) {
     console.log('Error caught with GET request (fn fetchData):', err);
-    if (err.response.status === 403) {
+
+    if (err.response && err.response.status === 403) {
       logoutUser().then(() => {
-        Router.push('/login');
+        Router.push('/admin/login');
       });
     }
   }
 
   console.log('Response Data:', response);
-  return await response.data;
+  return response;
 };
 
 /**

@@ -22,6 +22,13 @@ const COOKIE_OPTIONS = {
   signed: true // allows verifying source of the cookie and not allow modified cookies
 };
 
+// User Info
+const userData = {
+  name: 'Kin Kuan',
+  email: 'kin@something.com',
+  type: AUTH_USER_TYPE
+};
+
 app.prepare().then(() => {
   // start express application
   const server = express();
@@ -31,7 +38,9 @@ app.prepare().then(() => {
   // parse and use cookies and signed cookies
   server.use(cookieParser(COOKIE_SECRET));
 
-  // handling user login
+  /**
+   * Handling User Login
+   */
 
   server.post('/api/login', async (req, res) => {
     console.log('REQ BODY:', req.body);
@@ -44,16 +53,27 @@ app.prepare().then(() => {
       return res.status(403).send('Credentials wrong, error logging in');
     }
 
-    // return user info
-    const userData = {
-      name: 'Kin Kuan',
-      email: 'kin@something.com',
-      type: AUTH_USER_TYPE
-    };
-
+    // creating and sending back signed cookies to the client
     res.cookie('token', userData, COOKIE_OPTIONS);
 
+    // return user info
     res.json(userData);
+  });
+
+  /**
+   * Getting user profile
+   */
+
+  server.get('/api/profile', async (req, res) => {
+    // getting signed cookies, with default of {} if there is no signed cookies
+    const { signedCookies = {} } = req;
+    const { token } = signedCookies;
+
+    // check if token exists
+    if (token && token.email) {
+      // send response back to user
+      res.json(userData);
+    }
   });
 
   // handle get request to all routes
