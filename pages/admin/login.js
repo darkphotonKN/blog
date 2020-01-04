@@ -51,13 +51,13 @@ class Login extends React.Component {
         <section id="login">
           <div className="login-form">
             <div className="login-title">
-              <h3>Admin Login</h3>
+              <h3>會員登入</h3>
             </div>
             <form onSubmit={this.handleSubmit}>
               <div className="input-wrap">
                 <div className="row">
                   <div className="col-12">
-                    <label htmlFor="username" className="mr-3">
+                    <label htmlFor="username" className="mr-3 mt-4">
                       登入名稱
                     </label>
                     <input

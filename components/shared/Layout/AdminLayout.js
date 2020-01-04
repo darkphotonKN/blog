@@ -7,7 +7,7 @@ export default class AdminLayout extends React.Component {
 
     return (
       <div className="admin-app">
-        <AdminBar user={user ? user : { name: 'Guest' }} />
+        <AdminBar user={user} />
         <div className="bg-overlay">{this.props.children}</div>
       </div>
     );

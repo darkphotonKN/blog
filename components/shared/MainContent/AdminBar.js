@@ -1,5 +1,8 @@
 const AdminBar = ({ user }) => {
-  return <div className="admin-bar text-right">Welcome back, {user.name}</div>;
+  if (user)
+    return <div className="admin-bar text-right">歡迎回來, {user.name}</div>;
+
+  return <div className="admin-bar text-right">你好, Guest</div>;
 };
 
 export default AdminBar;

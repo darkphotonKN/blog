@@ -15,6 +15,8 @@ const withAuthentication = (WrappedComponent) => {
         componentProps = await WrappedComponent.getInitialProps();
       }
 
+      console.log('withAuthentication PROPS:', componentProps);
+
       // return those props
       return {
         ...componentProps
@@ -33,6 +35,18 @@ const withAuthentication = (WrappedComponent) => {
         authenticatedUser
       });
     }
+
+    // async componentDidUpdate(prevProps, prevState) {
+    //   console.log('prevState', prevState);
+    //   console.log('Current State:', this.state);
+
+    //   if (prevState !== this.state) {
+    //     const authenticatedUser = await checkUserAuthenticated();
+    //     this.setState({
+    //       authenticatedUser
+    //     });
+    //   }
+    // }
 
     render() {
       const { authenticatedUser } = this.state;

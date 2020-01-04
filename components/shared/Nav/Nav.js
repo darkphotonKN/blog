@@ -45,14 +45,14 @@ class Nav extends React.Component {
               </li>
 
               {/* Intagram */}
-              <li className="list-item d-none d-sm-block">
+              <li className="list-item">
                 <a href="#">
                   <i className="fab fa-instagram" />
                 </a>
               </li>
 
               {/* Facebook */}
-              <li className="list-item d-none d-sm-block">
+              <li className="list-item">
                 <a href="#">
                   <i className="fab fa-facebook-f" />
                 </a>
@@ -62,21 +62,19 @@ class Nav extends React.Component {
 
           {/* Mobile fb and instagram */}
 
-          {/* Intagram */}
-          <div className="row">
-            <li className="list-item d-block d-sm-none">
+          {/* <div className="row">
+            <li className="list-item d-flex d-sm-none">
               <a href="#">
                 <i className="fab fa-instagram" />
               </a>
             </li>
 
-            {/* Facebook */}
-            <li className="list-item d-block d-sm-none">
+            <li className="list-item d-flex d-sm-none">
               <a href="#">
                 <i className="fab fa-facebook-f" />
               </a>
             </li>
-          </div>
+          </div> */}
         </div>
       </div>
     );

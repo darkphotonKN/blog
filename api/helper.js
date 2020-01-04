@@ -67,23 +67,6 @@ export const fetchPublicData = async (endpoint) => {
 export const fetchData = async (endpoint) => {
   let response = [];
 
-  // if (typeof window !== 'undefined') {
-  //   // acquire user auth token
-  //   token = getToken();
-
-  //   // if token is no present, user is not authenticated therefore logout and redirect
-  //   if (!token) {
-  //     // logoutUser(); // optional logout if user token unavailable
-  //     return; // exits rest of fn call
-  //   }
-  // }
-
-  // const headers = {
-  //   headers: {
-  //     Authorization: token
-  //   }
-  // };
-
   try {
     response = await axios.get(endpoint);
   } catch (err) {

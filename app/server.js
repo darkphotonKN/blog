@@ -1,6 +1,7 @@
 const next = require('next');
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 3069;
@@ -9,25 +10,34 @@ const app = next({ dev });
 
 const handler = app.getRequestHandler();
 
-const authenticate = require('./utils/serverAuth');
+// load our env data
+require('dotenv').config();
 
-// string that dictates if user is authenticated
-const AUTH_USER_TYPE = 'authenticated';
-// cookie secret
-const COOKIE_SECRET = '#12qsdISADJ12@I!)_I!@)';
-// cookie extra options
-const COOKIE_OPTIONS = {
-  httpOnly: true,
-  secure: !dev,
-  signed: true // allows verifying source of the cookie and not allow modified cookies
-};
+// routes
+const api = require('./routes/api');
 
 // User Info
 const userData = {
   name: 'Kin Kuan',
   email: 'kin@something.com',
-  type: AUTH_USER_TYPE
+  type: process.env.AUTH_USER_TYPE
 };
+
+// mongoose config options
+const mongooseOptions = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+};
+// connecting to Database
+mongoose
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+  .then(() => console.log('Connected to DB.'))
+  .catch((err) => console.log('Error caught while connecting to DB:', err));
+
+mongoose.connection.on('error', (err) => {
+  console.log(`DB connection error: ${err.message}`);
+});
 
 app.prepare().then(() => {
   // start express application
@@ -36,45 +46,12 @@ app.prepare().then(() => {
   // tell express to parse json data
   server.use(express.json());
   // parse and use cookies and signed cookies
-  server.use(cookieParser(COOKIE_SECRET));
+  server.use(cookieParser(process.env.COOKIE_SECRET));
 
   /**
-   * Handling User Login
+   * API ROUTES
    */
-
-  server.post('/api/login', async (req, res) => {
-    console.log('REQ BODY:', req.body);
-    const { username, password } = req.body;
-
-    const user = await authenticate(username, password);
-
-    if (!user) {
-      // return to prevent rest of the function from running
-      return res.status(403).send('Credentials wrong, error logging in');
-    }
-
-    // creating and sending back signed cookies to the client
-    res.cookie('token', userData, COOKIE_OPTIONS);
-
-    // return user info
-    res.json(userData);
-  });
-
-  /**
-   * Getting user profile
-   */
-
-  server.get('/api/profile', async (req, res) => {
-    // getting signed cookies, with default of {} if there is no signed cookies
-    const { signedCookies = {} } = req;
-    const { token } = signedCookies;
-
-    // check if token exists
-    if (token && token.email) {
-      // send response back to user
-      res.json(userData);
-    }
-  });
+  server.use('/api', api);
 
   // handle get request to all routes
   server.get('*', (req, res) => {
