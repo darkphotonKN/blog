@@ -73,14 +73,14 @@ export const fetchData = async (endpoint) => {
     console.log('Error caught with GET request (fn fetchData):', err);
 
     if (err.response && err.response.status === 403) {
-      logoutUser().then(() => {
-        Router.push('/admin/login');
-      });
+      // logoutUser().then(() => {
+      // Router.push('/admin/login');
+      // });
     }
   }
 
   console.log('Response Data:', response);
-  return response;
+  return response.data;
 };
 
 /**

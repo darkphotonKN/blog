@@ -2,12 +2,16 @@ import ReactPagination from 'react-paginate';
 
 import Layout from '../components/shared/Layout/Layout';
 import BlogPost from '../components/shared/MainContent/BlogPost';
-// import Pagination from '../components/shared/MainContent/Pagination';
+
+import { fetchData } from '../api/helper';
 
 class Index extends React.Component {
   static async getInitialProps() {
-    // in list of backend posts
+    // const blogPosts = await fetchData('/api/posts');
+
     return {
+      // posts,
+      // blogPosts
       blogPosts: [
         {
           id: 1,
@@ -36,19 +40,33 @@ class Index extends React.Component {
     };
   }
 
+  state = {
+    posts: []
+  };
+
+  async componentDidMount() {
+    const posts = await fetchData('api/posts');
+    this.setState({
+      posts
+    });
+  }
+
   render() {
     const { blogPosts } = this.props;
+    const { posts } = this.state;
+    console.log('POSTS:', posts);
+    console.log('Blog POSTS:', blogPosts);
     return (
       <Layout subtitle={'最新文章'} sidebar>
         <div className="blog-post-list">
-          {blogPosts
-            ? blogPosts.map((blog) => (
+          {posts
+            ? posts.map((post) => (
                 <BlogPost
-                  key={blog.id}
-                  id={blog.id}
-                  date={blog.date}
-                  content={blog.content}
-                  title={blog.title}
+                  key={post.id}
+                  id={post.id}
+                  date={post.date}
+                  content={post.content}
+                  title={post.title}
                 />
               ))
             : null}

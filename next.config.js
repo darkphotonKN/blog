@@ -1,6 +1,6 @@
 module.exports = {
   env: {
     username: 'kin',
-    password: 'idontwriteblogs'
+    password: 'kin321'
   }
 };

@@ -6,8 +6,8 @@ import { loginUser } from '../../utils/auth';
 
 class Login extends React.Component {
   state = {
-    username: 'kin',
-    password: 'test123'
+    username: process.env.username,
+    password: process.env.password
   };
 
   handleSubmit = (e) => {

@@ -1,9 +1,13 @@
 const express = require('express');
 
-const authenticate = require('../utils/serverAuth');
+const serverAuth = require('../utils/serverAuth');
+const authenticate = serverAuth.authenticate;
+const userAuthenticated = serverAuth.userAuthenticated;
 
 const router = express.Router();
 const dev = process.env.NODE_ENV !== 'production';
+
+const Post = require('../models/Post');
 
 // cookie extra options
 const COOKIE_OPTIONS = {
@@ -42,17 +46,72 @@ router.post('/login', async (req, res) => {
 /**
  * Getting user profile
  */
-
 router.get('/profile', async (req, res) => {
-  // getting signed cookies, with default of {} if there is no signed cookies
-  const { signedCookies = {} } = req;
-  const { token } = signedCookies;
-
-  // check if token exists
-  if (token && token.email) {
-    // send response back to user
-    res.json(userData);
+  // if user is authenticated (checks signed cookies from request)
+  try {
+    if (userAuthenticated(req)) {
+      // send response back to user
+      res.json(userData);
+    } else throw err;
+  } catch (err) {
+    res.status(403).json('Forbidden access to profile');
   }
+});
+
+/**
+ * Fetches list of all posts
+ */
+router.get('/posts', async (req, res) => {
+  try {
+    const posts = await Post.find();
+    // if (userAuthenticated(req)) {
+    // return to user the list of posts
+    res.json(posts);
+    // } else throw err;
+  } catch (err) {
+    res.status(403).json('Forbidden access to list of posts.');
+  }
+});
+
+/**
+ * Fetches a single blog post
+ */
+router.get('posts/:id', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    res.json(post);
+  } catch (err) {
+    res.status(403).json(err);
+  }
+});
+
+/**
+ * Adding a new blog post
+ */
+router.post('/post', async (req, res) => {
+  // generating new post obj to add to DB
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content,
+    date: new Date()
+  });
+
+  // using async await
+  let postSaved;
+
+  try {
+    postSaved = await post.save();
+    res.status(200).json(postSaved);
+  } catch (err) {
+    res.status(403).json(err);
+  }
+
+  // using promise
+  // .then((data) => {
+  //   res.status(200).json(data);
+  // })
+  // .catch((err) => res.status(403).send(err));
 });
 
 module.exports = router;

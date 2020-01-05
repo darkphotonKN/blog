@@ -11,6 +11,7 @@ const app = next({ dev });
 const handler = app.getRequestHandler();
 
 // load our env data
+
 require('dotenv').config();
 
 // routes
