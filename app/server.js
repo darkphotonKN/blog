@@ -14,7 +14,7 @@ const handler = app.getRequestHandler();
 
 require('dotenv').config();
 
-// routes
+// api routes
 const api = require('./routes/api');
 
 // User Info

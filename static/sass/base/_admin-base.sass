@@ -1,3 +1,5 @@
+$admin-area-height: 60vh
+  
 .admin-app  
   font-family: $tertiary-font
   font-size: 1.8rem
@@ -9,12 +11,38 @@
   min-height: 100vh
   padding: 17px
 
+  section#admin-area
+    display: flex 
+    flex-direction: row
 
+    .nav-section
+      // display: inline-block
+      width: 190px
+      
+      nav ul
+        border: 1pox solid $color-primary
+        padding: 16px
+        background-color: rgba(255, 255, 255, 0.8)
+        min-height: $admin-area-height
+        border-radius: 4px 0px 0px 4px
 
-  .bg-overlay
-    padding: 0px 100px
-    height: 100%
-    min-height: 60vh
-    width: 100%
-    border-radius: 4px
-    background-color: rgba(255, 255, 255, 0.8)
+        li 
+          list-style: none
+
+          a
+            color: $color-primary
+            text-decoration: none
+
+            &:hover
+              color: $color-hover
+
+    .bg-overlay
+      // display: inline-block
+      border: 1pox solid $color-primary
+      flex-grow: 2
+      padding: 20px 100px
+      height: 100%
+      min-height: $admin-area-height
+      // width: 100%
+      border-radius: 0 4px 4px 0
+      background-color: rgba(255, 255, 255, 0.8)

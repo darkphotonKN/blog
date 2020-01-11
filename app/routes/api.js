@@ -108,6 +108,7 @@ router.post('/post', async (req, res) => {
   }
 
   // using promise
+  // post.save()
   // .then((data) => {
   //   res.status(200).json(data);
   // })

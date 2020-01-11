@@ -13,9 +13,9 @@ export const loginUser = async (username, password) => {
 };
 
 export const checkUserAuthenticated = async () => {
-  const { data } = await fetchData('/api/profile');
+  const response = await fetchData('/api/profile');
 
-  return data;
+  return response;
 };
 
 export const logoutUser = () => {

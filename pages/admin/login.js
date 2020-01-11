@@ -47,7 +47,7 @@ class Login extends React.Component {
     const { username, password, errMsg } = this.state;
 
     return (
-      <AdminLayout>
+      <AdminLayout loginPage>
         <section id="login">
           <div className="login-form">
             <div className="login-title">
