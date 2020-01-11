@@ -3,9 +3,9 @@ import AddPostForm from '../../../components/shared/Form/AddPostForm';
 
 import withAuthentication from '../../../components/HOC/withAuthentication';
 
-const AdminBlogAdd = () => {
+const AdminBlogAdd = (props) => {
   return (
-    <AdminLayout>
+    <AdminLayout user={props.user}>
       <AddPostForm />
     </AdminLayout>
   );

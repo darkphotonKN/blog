@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const dev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 3069;
 
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+
 const app = next({ dev });
 
 const handler = app.getRequestHandler();

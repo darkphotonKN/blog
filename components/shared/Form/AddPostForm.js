@@ -55,6 +55,7 @@ const AddPostForm = (props) => {
             name="post"
             type="text"
             placeholder="請輸入"
+            rows="3"
             onChange={handleChange}
             value={values.post}
           />

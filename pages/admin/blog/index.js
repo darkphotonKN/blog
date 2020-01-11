@@ -26,7 +26,7 @@ class BlogIndex extends React.Component {
     return (
       <AdminLayout user={this.props.user}>
         <Link href="/admin/blog/add">
-          <button className="add-new-btn">新增</button>
+          <button className="submit-btn">新增</button>
         </Link>
 
         {blogPosts
