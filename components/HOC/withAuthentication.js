@@ -7,7 +7,7 @@ import { checkUserAuthenticated } from '../../utils/auth';
 
 const withAuthentication = (WrappedComponent) => {
   return class AuthenticatedComponent extends React.Component {
-    static async getInitialProps() {
+    static async getInitialProps(ctx) {
       // get wrapped component's getInitialProps
       let componentProps = {};
 
@@ -19,6 +19,9 @@ const withAuthentication = (WrappedComponent) => {
 
       // return those props
       return {
+        // nextjs ctx props passed down to component from our HOC
+        pathname: ctx.pathname,
+        query: ctx.query,
         ...componentProps
       };
     }

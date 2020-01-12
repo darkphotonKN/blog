@@ -1,9 +1,21 @@
+import { useState, useEffect } from 'react';
+
 import { withFormik } from 'formik';
-import Router from 'next/router';
+import { fetchData, postData } from '../../../api/helper';
 
-import { postData } from '../../../api/helper';
+const EditPostForm = (props) => {
+  const [postData, setPostData] = useState({});
 
-const AddPostForm = (props) => {
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchData(`/api/posts/${props.id}`);
+
+      setPostData(data);
+    };
+
+    getData();
+  }, []);
+
   const {
     // passed down from higher order component
     values,
@@ -16,6 +28,9 @@ const AddPostForm = (props) => {
     handleReset,
     dirty
   } = props;
+
+  console.log('Edit Form Props:', props);
+  console.log('Post Data:', postData);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -30,11 +45,11 @@ const AddPostForm = (props) => {
           <input
             id="title"
             name="title"
-            className="col-md-8"
             type="text"
+            className="col-md-8"
             placeholder="請輸入"
             onChange={handleChange}
-            value={values.title}
+            value={values.title.length > 0 ? values.title : postData.title}
           />
 
           {/* validation */}
@@ -62,7 +77,7 @@ const AddPostForm = (props) => {
             placeholder="請輸入"
             rows="3"
             onChange={handleChange}
-            value={values.post}
+            value={values.post.length > 0 ? values.post : postData.content}
           />
           {/* validation */}
           {errors.post && touched.post && (
@@ -79,9 +94,9 @@ const AddPostForm = (props) => {
   );
 };
 
-const AddPostFormValidated = withFormik({
+const EditPostFormValidated = withFormik({
   // Makes values props that holds the form state
-  mapPropsToValues: () => ({
+  mapPropsToValues: (props) => ({
     title: '',
     post: ''
   }),
@@ -104,18 +119,17 @@ const AddPostFormValidated = withFormik({
   // Submitting Form
   handleSubmit: async (values, { props, setSubmitting }) => {
     console.log('Post Values Before:', values);
+    console.log('And props:', props);
 
     const { data } = await postData('/api/posts', {
       title: values.title,
       content: values.post
     });
 
-    Router.push('/admin/blog');
-
     console.log('Data after posting:', data);
   },
 
   displayName: 'BasicForm'
-})(AddPostForm);
+})(EditPostForm);
 
-export default AddPostFormValidated;
+export default EditPostFormValidated;

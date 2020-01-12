@@ -1,0 +1,25 @@
+
+section#admin-blog
+  .post
+    cursor: pointer
+    transition: color 200ms ease-in-out
+
+    span
+      font-weight: 600
+      margin-right: 10px
+
+    &:hover
+      color: $color-hover
+
+      button.delete-btn
+        display: block
+
+    button.delete-btn
+      padding: 4px 12px
+      color: $color-white
+      background-color: $color-red
+      animation: fade-up 300ms ease-in-out forwards
+      display: none
+
+    p.deleted-post-msg
+      color: $color-red

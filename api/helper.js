@@ -130,22 +130,11 @@ export const postData = async (endpoint, payload) => {
   let token = '';
   let response = [];
 
-  if (typeof window !== 'undefined') {
-    // acquire user auth token
-    token = getToken();
-  }
-
-  const headers = {
-    headers: {
-      Authorization: token
-    }
-  };
-
-  const postObj = JSON.stringify(payload);
-  console.log('Post Obj after stringify:', postObj);
+  // const postObj = JSON.stringify(payload);
+  // console.log('Post Obj after stringify:', postObj);
 
   try {
-    response = await axios.post(endpoint, postObj, headers);
+    response = await axios.post(endpoint, payload);
   } catch (err) {
     console.log('Error caught with POST request:', err);
   }

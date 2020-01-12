@@ -76,7 +76,7 @@ router.get('/posts', async (req, res) => {
 /**
  * Fetches a single blog post
  */
-router.get('posts/:id', async (req, res) => {
+router.get('/posts/:id', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
@@ -89,7 +89,7 @@ router.get('posts/:id', async (req, res) => {
 /**
  * Adding a new blog post
  */
-router.post('/post', async (req, res) => {
+router.post('/posts', async (req, res) => {
   // generating new post obj to add to DB
   const post = new Post({
     title: req.body.title,
@@ -113,6 +113,50 @@ router.post('/post', async (req, res) => {
   //   res.status(200).json(data);
   // })
   // .catch((err) => res.status(403).send(err));
+});
+
+/**
+ * Editing a blog post
+ */
+router.post('/posts/:id', async (req, res) => {
+  // Check if the post already exists via id, if so edit, else add new
+  let postFound = false;
+
+  postFound = await Post.findById(req.params.id);
+
+  // generating new post obj to add to DB
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content,
+    date: new Date()
+  });
+
+  // using async await
+  let postSaved;
+
+  try {
+    postSaved = await post.save();
+    res.status(200).json(postSaved);
+  } catch (err) {
+    res.status(403).json(err);
+  }
+
+  // using promise
+  // post.save()
+  // .then((data) => {
+  //   res.status(200).json(data);
+  // })
+  // .catch((err) => res.status(403).send(err));
+});
+
+/**
+ * Deleting a blog post
+ */
+
+router.post('/posts/delete/:id', async (req, res) => {
+  const post = await Post.findByIdAndDelete(req.params.id);
+
+  res.json(post);
 });
 
 module.exports = router;

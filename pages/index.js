@@ -21,7 +21,7 @@ class Index extends React.Component {
   };
 
   async componentDidMount() {
-    const posts = await fetchData('api/posts');
+    const posts = await fetchData('/api/posts');
     this.setState({
       posts
     });
@@ -40,8 +40,8 @@ class Index extends React.Component {
           {posts
             ? posts.map((post) => (
                 <BlogPost
-                  key={post.id}
-                  id={post.id}
+                  key={post._id}
+                  id={post._id}
                   date={post.date}
                   content={post.content}
                   title={post.title}

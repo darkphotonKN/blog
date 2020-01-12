@@ -4,6 +4,13 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
 const dev = process.env.NODE_ENV !== 'production';
+// const devProxy = {
+//   '/api': {
+//     target: 'http://localhost:3069/',
+//     pathRewrite: { '^/api': '/' },
+//     changeOrigin: true
+//   }
+// };
 const port = process.env.PORT || 3069;
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
@@ -45,6 +52,14 @@ mongoose.connection.on('error', (err) => {
 app.prepare().then(() => {
   // start express application
   const server = express();
+
+  // set up proxy
+  // if (dev && devProxy) {
+  //   const proxyMiddleware = require('http-proxy-middleware');
+  //   Object.keys(devProxy).forEach(function(context) {
+  //     server.use(proxyMiddleware(context, devProxy[context]));
+  //   });
+  // }
 
   // tell express to parse json data
   server.use(express.json());
