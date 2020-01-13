@@ -39,7 +39,7 @@ const Layout = ({ subtitle, sidebar, children }) => {
       </Head>
       <div className="bg-overlay">
         <div className="container-fluid main-area">
-          <MainTitle title={'我的故事'} /> <Nav />
+          <MainTitle title={'My Life Story'} /> <Nav />
           <div className="row sub-header mb-4">
             <div className="title col-md-4 col-12 offset-md-1 ">
               <div className="title-wrap">

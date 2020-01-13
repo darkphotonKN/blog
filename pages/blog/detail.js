@@ -9,16 +9,26 @@ export default class BlogDetail extends React.Component {
     console.log('Request:', req);
     const { id } = context.query;
 
-    const { data } = fetchData(`http://localhost:3069/api/posts/${id}`);
+    // const { data } = fetchData(`http://localhost:3069/api/posts/${id}`);
 
     return {
-      id,
-      post: data
+      id
+      // post: data
     };
   }
 
+  state = {
+    post: undefined
+  };
+
+  async componentDidMount() {
+    const response = await fetchData(`/api/posts/${this.props.id}`);
+    this.setState({ post: response });
+  }
+
   render() {
-    const { id, post } = this.props;
+    const { id } = this.props;
+    const { post } = this.state;
 
     console.log('Blog Post:', post);
     return (

@@ -7,7 +7,7 @@ const AboutIndex = () => {
     <Layout subtitle={'About'}>
       <section id="about">
         <div className="row mt-4">
-          <div className="col-12">
+          <div className="col-12 offset-0 offset-md-1 col-md-10">
             <QuoteBlock
               content={
                 'Believe Nothing, no matter where you read it, no matter who said it, unless it agrees with your own reason and your own common sense.'

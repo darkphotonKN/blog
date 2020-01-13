@@ -1,9 +1,9 @@
 $admin-area-height: 60vh
-  
-.admin-app  
+
+.admin-app
   font-family: $tertiary-font
   font-size: 1.8rem
-  
+
   background: url('../img/bg-faded.jpg')
   background-size: cover
   background-repeat: no-repeat
@@ -12,22 +12,25 @@ $admin-area-height: 60vh
   padding: 17px
 
   section#admin-area
-    display: flex 
+    display: flex
     flex-direction: row
 
     .nav-section
       // display: inline-block
       width: 190px
-      
+
       nav ul
         border: 1pox solid $color-primary
         padding: 16px
         background-color: rgba(255, 255, 255, 0.8)
-        min-height: $admin-area-height
+        // min-height: $admin-area-height
         border-radius: 4px 0px 0px 4px
 
-        li 
+        li
           list-style: none
+
+          &.title
+            border-bottom: 1px solid $color-primary
 
           a
             color: $color-primary
@@ -46,3 +49,10 @@ $admin-area-height: 60vh
       // width: 100%
       border-radius: 0 4px 4px 0
       background-color: rgba(255, 255, 255, 0.8)
+
+  .admin-bar
+
+    .title
+      a
+        font-size: 2rem
+        color: $font-dark

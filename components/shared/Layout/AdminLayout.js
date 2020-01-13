@@ -16,6 +16,8 @@ export default class AdminLayout extends React.Component {
             <div className="nav-section">
               <nav>
                 <ul>
+                  <li className="title mb-3">Menu</li>
+
                   <li>
                     <Link href="/admin/profile">
                       <a>Profile</a>
