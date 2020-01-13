@@ -30,7 +30,7 @@ const EditPostForm = (props) => {
   } = props;
 
   console.log('Edit Form Props:', props);
-  console.log('Post Data:', postData);
+  // console.log('Post Data:', postData);
 
   return (
     <form onSubmit={handleSubmit}>
