@@ -87,7 +87,7 @@ const EditPostForm = (props) => {
           )}
         </div>
       </div>
-      <button type="submit" className="submit-btn">
+      <button type="submit" className="submit-btn ">
         Post Blog
       </button>
     </form>
