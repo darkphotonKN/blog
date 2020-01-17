@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const Footer = ({ title }) => {
   return (
     <div className="footer">
@@ -41,8 +43,13 @@ const Footer = ({ title }) => {
 
           <div className="col-md-4 text-center ">
             <h4 className="title mb-5">Credits & Copyright</h4>
-            <p className="text-left">Hosted for free on Heroku</p>
+            <p className="text-left">Hosted on Heroku</p>
             <p className="text-left">Copyright &#169; 2020 Kin Kuan</p>
+            <p className="text-left">
+              <Link href="/admin/login">
+                <a className="admin-login-redirect-btn">用戶登入</a>
+              </Link>
+            </p>
           </div>
         </div>
       </div>
