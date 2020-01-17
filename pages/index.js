@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import Layout from '../components/shared/Layout/Layout';
 import BlogPost from '../components/shared/MainContent/BlogPost';
+import Loading from '../components/shared/MainContent/Loading';
 
 import { fetchData } from '../api/helper';
 
@@ -18,7 +19,7 @@ class Index extends React.Component {
   }
 
   state = {
-    posts: []
+    posts: undefined
   };
 
   async componentDidMount() {
@@ -38,19 +39,21 @@ class Index extends React.Component {
     return (
       <Layout subtitle={'Latest Stories'} sidebar>
         <div className="blog-post-list">
-          {posts
-            ? posts
-                .reverse()
-                .map((post) => (
-                  <BlogPost
-                    key={post._id}
-                    id={post._id}
-                    date={moment(post.date).format('YYYY/MM/DD')}
-                    content={post.content}
-                    title={post.title}
-                  />
-                ))
-            : null}
+          {posts ? (
+            posts
+              .reverse()
+              .map((post) => (
+                <BlogPost
+                  key={post._id}
+                  id={post._id}
+                  date={moment(post.date).format('YYYY/MM/DD')}
+                  content={post.content}
+                  title={post.title}
+                />
+              ))
+          ) : (
+            <Loading />
+          )}
 
           {/* <Pagination /> */}
         </div>

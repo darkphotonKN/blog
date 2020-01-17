@@ -36,12 +36,12 @@ const ContactIndex = () => {
             </div>
             <div className="col-4 text-center">
               <a href="#">
-                <i class="fab fa-twitter mr-4" />
+                <i className="fab fa-twitter mr-4" />
               </a>
             </div>
             <div className="col-4 text-center">
               <a href="#">
-                <i class="fab fa-instagram mr-4" />
+                <i className="fab fa-instagram mr-4" />
               </a>
             </div>
           </div>

@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const MainTitle = ({ title }) => {
   return (
-    <div className="row mb-2">
+    <div className="row mb-2 px-4">
       <div className="col-12 text-center text-md-left">
         <h2>
           <div className="title-wrap">

@@ -32,7 +32,7 @@ const AddPostForm = (props) => {
             name="title"
             className="col-md-8"
             type="text"
-            placeholder="請輸入"
+            placeholder="輸入.."
             onChange={handleChange}
             value={values.title}
           />
@@ -59,7 +59,7 @@ const AddPostForm = (props) => {
             name="post"
             type="text"
             className="col-md-8"
-            placeholder="請輸入"
+            placeholder="輸入.."
             rows="6"
             onChange={handleChange}
             value={values.post}

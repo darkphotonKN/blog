@@ -17,7 +17,7 @@ class Nav extends React.Component {
     console.log('Url:', currentURL);
 
     return (
-      <div className="row nav-bar">
+      <div className="row nav-bar px-4">
         <div className="col-md-7 col-12 nav-date">
           <Date />
         </div>

@@ -3,9 +3,15 @@ import Link from 'next/link';
 import AdminBar from '../MainContent/AdminBar';
 
 export default class AdminLayout extends React.Component {
+  static async getInitialProps(context) {
+    return {
+      query: context.query
+    };
+  }
   render() {
-    const { user, loginPage } = this.props;
+    const { user, loginPage, query } = this.props;
     console.log('User:', user);
+    console.log('Query:', this.props.pathname);
 
     return (
       <div className="admin-app">

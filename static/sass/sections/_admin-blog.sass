@@ -15,11 +15,16 @@ section#admin-blog
         display: block
 
     button.delete-btn
+      border-radius: 4px
       padding: 4px 12px
-      color: $color-white
+      color: #fff
       background-color: $color-red
       animation: fade-up 300ms ease-in-out forwards
       display: none
+      transition: all 200ms ease-in-out
+
+      &:hover
+        background-color: darken($color-red, 10%)
 
     p.deleted-post-msg
       color: $color-red

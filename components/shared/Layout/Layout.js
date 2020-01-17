@@ -32,7 +32,7 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
 const Layout = ({ subtitle, sidebar, children }) => {
-  const siteTitle = 'My Life Story';
+  const siteTitle = 'Girl on the Move';
 
   return (
     <div className="app">
@@ -40,7 +40,7 @@ const Layout = ({ subtitle, sidebar, children }) => {
         <title>Blog App</title>
       </Head>
       <div className="bg-overlay">
-        <div className="container-fluid main-area">
+        <div className="container-fluid main-area px-md-0">
           <MainTitle title={siteTitle} /> <Nav />
           <div className="row sub-header mb-4">
             <div className="title col-md-4 col-12 offset-md-1 ">

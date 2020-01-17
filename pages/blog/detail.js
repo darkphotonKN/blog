@@ -1,5 +1,6 @@
 import Layout from '../../components/shared/Layout/Layout';
 import BlogPostFull from '../../components/shared/MainContent/BlogPostFull';
+import Loading from '../../components/shared/MainContent/Loading';
 
 import { fetchData } from '../../api/helper';
 
@@ -41,7 +42,7 @@ export default class BlogDetail extends React.Component {
               date={post.date}
             />
           ) : (
-            <BlogPostFull noContent />
+            <Loading />
           )}
         </div>
       </Layout>

@@ -33,7 +33,7 @@ const EditPostForm = (props) => {
             name="title"
             type="text"
             className="col-md-8"
-            placeholder="請輸入"
+            placeholder="輸入.."
             onChange={handleChange}
             value={values.title}
           />
@@ -60,7 +60,7 @@ const EditPostForm = (props) => {
             name="post"
             type="text"
             className="col-md-8"
-            placeholder="請輸入"
+            placeholder="輸入.."
             rows="6"
             onChange={handleChange}
             value={values.post}
