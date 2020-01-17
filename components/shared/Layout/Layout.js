@@ -62,7 +62,7 @@ const Layout = ({ subtitle, sidebar, children }) => {
                 </div>
               </>
             ) : (
-              <div className="col-md-12 col-12 px-5">
+              <div className="col-md-12 col-12 px-3">
                 <div className="main-content">{children}</div>
               </div>
             )}

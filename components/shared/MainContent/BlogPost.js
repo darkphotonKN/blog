@@ -19,6 +19,7 @@ const BlogPost = ({ id, content, title, date }) => {
       >
         Read More
       </button>
+      <hr />
     </div>
   );
 };

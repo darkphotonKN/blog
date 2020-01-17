@@ -38,15 +38,17 @@ class Index extends React.Component {
       <Layout subtitle={'Latest Stories'} sidebar>
         <div className="blog-post-list">
           {posts
-            ? posts.map((post) => (
-                <BlogPost
-                  key={post._id}
-                  id={post._id}
-                  date={post.date}
-                  content={post.content}
-                  title={post.title}
-                />
-              ))
+            ? posts
+                .reverse()
+                .map((post) => (
+                  <BlogPost
+                    key={post._id}
+                    id={post._id}
+                    date={post.date}
+                    content={post.content}
+                    title={post.title}
+                  />
+                ))
             : null}
 
           {/* <Pagination /> */}

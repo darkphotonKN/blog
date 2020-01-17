@@ -19,13 +19,18 @@ const BlogPostFull = ({ id, content, title, date, noContent }) => {
     );
   } else {
     return (
-      <div className="blog-post-full container">
+      <div className="blog-post-full container px-3 px-md-5">
         <div className="row">
           <div className="blog-title text-center col-12">
             {title}
             {id}
           </div>
+        </div>
+        <div className="row">
           <div className="blog-date mt-3 col-12 text-center">{date}</div>
+        </div>
+
+        <div className="row">
           <div className="col-12 my-5">
             <QuoteBlock
               content={
@@ -34,9 +39,16 @@ const BlogPostFull = ({ id, content, title, date, noContent }) => {
               author={'Anonymous'}
             />
           </div>
-          <div className="blog-content mt-2 col-12">{content}</div>
-          <div className="blog-author mt-4">Kin Kuan</div>
         </div>
+
+        <div className="row">
+          <div className="blog-content mt-2 col-12">{content}</div>
+        </div>
+
+        <div className="row">
+          <div className="blog-author col-12 mt-4">Kin Kuan</div>
+        </div>
+
         <BackButton />
         {/* Comments Section */}
       </div>
