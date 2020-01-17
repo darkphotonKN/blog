@@ -12,7 +12,7 @@
 
 @media only screen and (max-width: $xxlg-custom-bp)
   .side-bar
-    height: 55vh
+    height: auto
     padding: 5px 15px
 
     .side-bar-wrap
@@ -56,7 +56,7 @@
 
     .side-bar-content
       p
-        font-size: 1rem
+        font-size: 1.2rem
 //smaller than medium
 @media only screen and (max-width: 766px)
 
@@ -66,11 +66,8 @@
 // SMALLER THAN MEDIUM (~ Tablets and Small Screens)
 @media only screen and (max-width: $md-bp)
 
-  .volunteer-login
-    &.container-fluid
-      .form-wrap
-        margin-left: 0
-        margin-right: 0
+  .back-btn-row
+    margin-top: 0px
 
   .blog-post-full
     padding: 0 0
@@ -87,6 +84,7 @@
 
 // larger than sm
 @media only screen and (min-width: $sm-bp)
+
   .volunteer-login
     &.container-fluid
       .form-wrap
@@ -100,8 +98,18 @@
   .app .bg-overlay
     padding: 0 10px
 
+  .admin-app
+
+    section#admin-blog
+      .post
+        button.delete-btn
+          display: block
+
   .main-area
     height: auto
+
+  .side-bar
+    margin-top: 40px
 
 // XS Size - Mobile Versions  
 @media only screen and (max-width: $xs-custom-bp)

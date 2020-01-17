@@ -20,10 +20,10 @@ class BlogIndex extends React.Component {
     });
   }
 
-  handleDelete = async (id) => {
+  handleDelete = async (e, id) => {
+    // stops event bubbling
+    e.stopPropagation();
     const { data } = await postData(`/api/posts/delete/${id}`);
-
-    console.log('Deleted post: ', data);
 
     this.setState({
       deletedPost: data
@@ -49,8 +49,8 @@ class BlogIndex extends React.Component {
           {blogPosts
             ? blogPosts.map((post, index) => (
                 <div className="post row col-12 col-md-10" key={post._id}>
-                  <Link href={`/admin/blog/edit?id=${post._id}`}>
-                    <div className="mt-4 col-10">
+                  {deletedPost && deletedPost._id === post._id ? (
+                    <div className="mt-4 col-12 col-md-10">
                       <div className="post-no">Post {index + 1}</div>
                       <hr />
                       <div className="title">
@@ -71,7 +71,31 @@ class BlogIndex extends React.Component {
                       </div>
                       <div className="content-detail">{post.content}</div>
                     </div>
-                  </Link>
+                  ) : (
+                    <Link href={`/admin/blog/edit?id=${post._id}`}>
+                      <div className="mt-4 col-12 col-md-10">
+                        <div className="post-no">Post {index + 1}</div>
+                        <hr />
+                        <div className="title">
+                          <span>名稱</span> {post.title}{' '}
+                          <button
+                            className="delete-btn"
+                            onClick={(e) => this.handleDelete(e, post._id)}
+                            style={{ float: 'right' }}
+                          >
+                            刪除
+                          </button>
+                        </div>
+                        <div className="date">
+                          <span>日期</span> {post.date}
+                        </div>
+                        <div className="content-title">
+                          <span>內容</span>
+                        </div>
+                        <div className="content-detail">{post.content}</div>
+                      </div>
+                    </Link>
+                  )}
                   <div className="col-12 col-md-2 text-center text-md-left"></div>
                   {deletedPost && deletedPost._id === post._id ? (
                     <div className="col-12 mt-3">

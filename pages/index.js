@@ -35,7 +35,7 @@ class Index extends React.Component {
     console.log('Blog POSTS:', blogPosts);
 
     return (
-      <Layout subtitle={'最新文章'} sidebar>
+      <Layout subtitle={'Latest Stories'} sidebar>
         <div className="blog-post-list">
           {posts
             ? posts.map((post) => (

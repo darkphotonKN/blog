@@ -10,37 +10,66 @@ export default class AdminLayout extends React.Component {
     return (
       <div className="admin-app">
         <AdminBar user={user} />
-
+        {/* mobile nav */}
+        <div className="nav-section mobile mt-4 d-block d-md-none">
+          <nav>
+            <ul>
+              <li>
+                <Link href="/admin/profile">
+                  <a>Profile</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/admin/blog">
+                  <a>Blog Posts</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/admin/about">
+                  <a>About</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/admin/profile">
+                  <a>Contact</a>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
         <section id="admin-area">
           {!loginPage ? (
-            <div className="nav-section">
-              <nav>
-                <ul>
-                  <li className="title mb-3">Menu</li>
+            <>
+              {/* Desktop */}
+              <div className="nav-section d-none d-md-block">
+                <nav>
+                  <ul>
+                    <li className="title mb-3">Menu</li>
 
-                  <li>
-                    <Link href="/admin/profile">
-                      <a>Profile</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/admin/blog">
-                      <a>Blog Posts</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/admin/about">
-                      <a>About</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/admin/profile">
-                      <a>Contact</a>
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+                    <li>
+                      <Link href="/admin/profile">
+                        <a>Profile</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/blog">
+                        <a>Blog Posts</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/about">
+                        <a>About</a>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/profile">
+                        <a>Contact</a>
+                      </Link>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </>
           ) : null}
           <div className="bg-overlay">{this.props.children}</div>
         </section>

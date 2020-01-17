@@ -23,7 +23,7 @@ class Nav extends React.Component {
         </div>
         <div className="col-md-5 col-12 text-center">
           <nav className="main-nav">
-            <ul className="nav-list">
+            <ul className="nav-list d-none d-md-block">
               <li className="list-item">
                 <Link prefetch href="/">
                   <a className={currentURL === '/' ? 'active' : ''}>Blog</a>
@@ -45,6 +45,7 @@ class Nav extends React.Component {
               </li>
 
               {/* Intagram */}
+
               <li className="list-item">
                 <a href="https://www.instagram.com/kinkangaku/?hl=en">
                   <i className="fab fa-instagram" />
@@ -54,6 +55,40 @@ class Nav extends React.Component {
               {/* Facebook */}
               <li className="list-item">
                 <a href="#">
+                  <i className="fab fa-facebook-f" />
+                </a>
+              </li>
+            </ul>
+
+            <ul className="nav-list d-block d-md-none mt-2">
+              <li className="list-item">
+                <Link prefetch href="/">
+                  <a className={currentURL === '/' ? 'active' : ''}>Blog</a>
+                </Link>
+              </li>
+              <li className="list-item">
+                <Link prefetch href="/about">
+                  <a className={currentURL === '/about' ? 'active' : ''}>
+                    About
+                  </a>
+                </Link>
+              </li>
+              <li className="list-item">
+                <Link prefetch href="/contact">
+                  <a className={currentURL === '/contact' ? 'active' : ''}>
+                    Contact
+                  </a>
+                </Link>
+              </li>
+            </ul>
+            <ul className="nav-list d-block d-md-none float-right mt-2">
+              <li className="list-item">
+                <a href="https://www.instagram.com/kinkangaku/?hl=en">
+                  <i className="fab fa-instagram" />
+                </a>
+              </li>
+              <li className="list-item">
+                <a href="">
                   <i className="fab fa-facebook-f" />
                 </a>
               </li>

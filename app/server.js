@@ -13,6 +13,7 @@ const dev = process.env.NODE_ENV !== 'production';
 // };
 const port = process.env.PORT || 3069;
 
+// only include env config files during dev mode
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const app = next({ dev });

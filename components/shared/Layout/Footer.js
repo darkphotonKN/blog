@@ -1,4 +1,4 @@
-const Footer = () => {
+const Footer = ({ title }) => {
   return (
     <div className="footer">
       <div className="container">
@@ -7,8 +7,8 @@ const Footer = () => {
             <h4 className="title mb-5">Disclaimer</h4>
             <p className="footer-content text-left d-flex align-items-center justify-content-center flex-column">
               This site is not intended to provide and does not constitute
-              medical, legal, or other professional advice. The content on
-              Herbal Corner is designed to support, not replace, medical or
+              medical, legal, or other professional advice. The content on{' '}
+              {title} is designed to support, not replace, medical or
               psychiatric treatment. Please seek professional care if you
               believe you may have a condition.
               {/* Before using the site, please

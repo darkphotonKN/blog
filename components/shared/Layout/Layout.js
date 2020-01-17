@@ -32,6 +32,8 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
 const Layout = ({ subtitle, sidebar, children }) => {
+  const siteTitle = 'My Life Story';
+
   return (
     <div className="app">
       <Head>
@@ -39,7 +41,7 @@ const Layout = ({ subtitle, sidebar, children }) => {
       </Head>
       <div className="bg-overlay">
         <div className="container-fluid main-area">
-          <MainTitle title={'My Life Story'} /> <Nav />
+          <MainTitle title={siteTitle} /> <Nav />
           <div className="row sub-header mb-4">
             <div className="title col-md-4 col-12 offset-md-1 ">
               <div className="title-wrap">
@@ -65,7 +67,7 @@ const Layout = ({ subtitle, sidebar, children }) => {
               </div>
             )}
           </section>
-          <Footer />
+          <Footer title={siteTitle} />
         </div>
       </div>
     </div>
