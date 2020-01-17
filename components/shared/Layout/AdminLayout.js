@@ -77,7 +77,12 @@ export default class AdminLayout extends React.Component {
               </div>
             </>
           ) : null}
-          <div className="bg-overlay">{this.props.children}</div>
+          <div
+            className="bg-overlay"
+            style={loginPage ? { backgroundColor: 'rgba(0, 0, 0, 0)' } : null}
+          >
+            {this.props.children}
+          </div>
         </section>
       </div>
     );

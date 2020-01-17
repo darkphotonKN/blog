@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import Layout from '../../components/shared/Layout/Layout';
 import BlogPostFull from '../../components/shared/MainContent/BlogPostFull';
 import Loading from '../../components/shared/MainContent/Loading';
@@ -39,7 +41,7 @@ export default class BlogDetail extends React.Component {
             <BlogPostFull
               content={post.content}
               title={post.title}
-              date={post.date}
+              date={moment(post.date).format('YYYY/MM/DD')}
             />
           ) : (
             <Loading />

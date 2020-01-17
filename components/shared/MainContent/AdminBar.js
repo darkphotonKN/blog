@@ -3,7 +3,7 @@ import Link from 'next/link';
 const AdminBar = ({ user }) => {
   if (user)
     return (
-      <div className="admin-bar ">
+      <div className="admin-bar my-3">
         <div className="title text-left">
           <Link href="/">Go to Blog</Link>
         </div>

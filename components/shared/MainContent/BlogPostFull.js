@@ -4,7 +4,7 @@ import BackButton from '../../shared/MainContent/BackButton';
 const BlogPostFull = ({ id, content, title, date, noContent }) => {
   console.log('Id:', id);
 
-  if (noContent) {
+  if (!content) {
     return (
       <div className="blog-post-full container">
         <div className="row">

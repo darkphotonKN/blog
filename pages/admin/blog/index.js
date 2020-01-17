@@ -50,9 +50,9 @@ class BlogIndex extends React.Component {
 
           {blogPosts ? (
             blogPosts.map((post, index) => (
-              <div className="post row col-12 col-md-10" key={post._id}>
+              <div className="post row col-12 col-md-10 pr-0" key={post._id}>
                 {deletedPost && deletedPost._id === post._id ? (
-                  <div className="mt-4 col-12 col-md-10">
+                  <div className="mt-4 col-12 col-md-10 pr-0">
                     <div className="post-no">Post {index + 1}</div>
                     <hr />
                     <div className="title">
@@ -75,7 +75,7 @@ class BlogIndex extends React.Component {
                   </div>
                 ) : (
                   <Link href={`/admin/blog/edit?id=${post._id}`}>
-                    <div className="mt-4 col-12 col-md-10">
+                    <div className="mt-4 col-12 col-md-10 pr-0">
                       <div className="post-no">Post {index + 1}</div>
                       <hr />
                       <div className="title">

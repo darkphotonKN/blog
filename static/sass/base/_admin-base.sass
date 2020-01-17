@@ -21,11 +21,12 @@ $admin-area-height: 60vh
       width: 190px
 
       nav ul
-        border: 1px solid $color-primary
+        // border: 1px solid $color-primary
         padding: 16px
         background-color: rgba(255, 255, 255, 0.8)
         // min-height: $admin-area-height
         border-radius: 4px 0px 0px 4px
+        width: 140px
 
         li
           list-style: none
@@ -34,7 +35,7 @@ $admin-area-height: 60vh
             border-bottom: 1px solid $color-primary
 
           a
-            color: $color-primary
+            color: $font-dark
             text-decoration: none
 
             &:hover
@@ -64,7 +65,7 @@ $admin-area-height: 60vh
       ul
         font-size: 1.6rem
         li
-          display: inline-block
+          display: block
           list-style: none
           margin-right: 10px
           a
@@ -78,3 +79,10 @@ $admin-area-height: 60vh
     section#admin-area
       .bg-overlay
         padding: 10px 20px
+
+    .nav-section
+      nav
+        ul
+          font-size: 1.4rem
+          li
+            display: inline-block

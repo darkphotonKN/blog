@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default class HappyBirthday extends React.Component {
   state = {
-    nextPage: false
+    page: 1
   };
 
   componentDidMount() {
@@ -38,16 +38,16 @@ export default class HappyBirthday extends React.Component {
   }
 
   render() {
-    const { nextPage } = this.state;
+    const { page } = this.state;
 
-    console.log('Next Page:', nextPage);
+    console.log('Next Page:', page);
 
     return (
       <section id="happy-birthday-card">
         <div id="card">
           <div id="card-inside">
             <div className="wrap">
-              {!nextPage ? (
+              {page === 1 ? (
                 <div className="page">
                   <p>Hey, you.</p>
                   <p>
@@ -62,6 +62,18 @@ export default class HappyBirthday extends React.Component {
                     當時我記得除了老闆外只有你回答..
                     所以我對你重一開始就有好的影響。
                   </p>
+
+                  <button
+                    className="page-btn next"
+                    onClick={() => this.setState({ page: 2 })}
+                  >
+                    下一頁
+                  </button>
+                </div>
+              ) : null}
+
+              {page === 2 ? (
+                <div className="page">
                   <p>
                     之後跟你講話的時候雖然我的中文真的很差，讀的很慢更不要說打字的速度ha，但你都還是很有耐心的回答了我。
                   </p>
@@ -79,17 +91,23 @@ export default class HappyBirthday extends React.Component {
                     希望你之後找到自己真的想做的事，因為你值得有個很愛你的環境工作！
                   </p>
                   <button
-                    className="page-btn"
-                    onClick={() => this.setState({ nextPage: true })}
+                    className="page-btn prev"
+                    onClick={() => this.setState({ page: 1 })}
                   >
-                    &gt;
+                    上一頁
+                  </button>
+                  <button
+                    className="page-btn next"
+                    onClick={() => this.setState({ page: 3 })}
+                  >
+                    下一頁
                   </button>
                 </div>
               ) : null}
 
               {/* Next Page */}
 
-              {nextPage ? (
+              {page === 3 ? (
                 <div className="page">
                   <p>
                     講到這個就講到你的禮物了 haha,
@@ -106,15 +124,15 @@ export default class HappyBirthday extends React.Component {
 
                   <Link href="/">
                     <span className="gift-link">
-                      Go to Gift <span>&rt;</span>
+                      Go to Gift <span className="ml-3">&gt;</span>
                     </span>
                   </Link>
                   <p className="signed mt-4">Kranti</p>
                   <button
-                    className="page-btn"
-                    onClick={() => this.setState({ nextPage: false })}
+                    className="page-btn prev"
+                    onClick={() => this.setState({ page: 2 })}
                   >
-                    &lt;
+                    上一頁
                   </button>
                 </div>
               ) : null}
@@ -127,9 +145,9 @@ export default class HappyBirthday extends React.Component {
 
           <div id="card-front">
             <div className="wrap d-flex justify-content-center align-items-center">
-              <h1>Happy Birthday Kin!</h1>
+              <h1 className="main-title">Happy Birthday Kin</h1>
             </div>
-            <button id="open">&gt;</button>
+            <button id="open">Open</button>
             {/* <button id="close">&lt;</button> */}
           </div>
         </div>
