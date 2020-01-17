@@ -60,7 +60,7 @@ const AddPostForm = (props) => {
             type="text"
             className="col-md-8"
             placeholder="請輸入"
-            rows="3"
+            rows="6"
             onChange={handleChange}
             value={values.post}
           />
@@ -91,11 +91,11 @@ const AddPostFormValidated = withFormik({
     const errors = {};
 
     if (!values.title) {
-      errors.title = '必填欄位';
+      errors.title = '必填欄位!';
     }
 
     if (!values.post) {
-      errors.post = '必填欄位';
+      errors.post = '必填欄位!';
     }
 
     return errors;

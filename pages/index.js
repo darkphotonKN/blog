@@ -1,4 +1,5 @@
 import ReactPagination from 'react-paginate';
+import moment from 'moment';
 
 import Layout from '../components/shared/Layout/Layout';
 import BlogPost from '../components/shared/MainContent/BlogPost';
@@ -44,7 +45,7 @@ class Index extends React.Component {
                   <BlogPost
                     key={post._id}
                     id={post._id}
-                    date={post.date}
+                    date={moment(post.date).format('YYYY/MM/DD')}
                     content={post.content}
                     title={post.title}
                   />

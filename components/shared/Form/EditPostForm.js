@@ -1,21 +1,7 @@
-import { useState, useEffect } from 'react';
-
 import { withFormik } from 'formik';
 import { fetchData, postData } from '../../../api/helper';
 
 const EditPostForm = (props) => {
-  const [postData, setPostData] = useState({});
-
-  useEffect(() => {
-    const getData = async () => {
-      const data = await fetchData(`/api/posts/${props.id}`);
-
-      setPostData(data);
-    };
-
-    getData();
-  }, []);
-
   const {
     // passed down from higher order component
     values,
@@ -49,7 +35,7 @@ const EditPostForm = (props) => {
             className="col-md-8"
             placeholder="請輸入"
             onChange={handleChange}
-            value={values.title.length > 0 ? values.title : postData.title}
+            value={values.title}
           />
 
           {/* validation */}
@@ -75,9 +61,9 @@ const EditPostForm = (props) => {
             type="text"
             className="col-md-8"
             placeholder="請輸入"
-            rows="3"
+            rows="6"
             onChange={handleChange}
-            value={values.post.length > 0 ? values.post : postData.content}
+            value={values.post}
           />
           {/* validation */}
           {errors.post && touched.post && (
@@ -96,21 +82,26 @@ const EditPostForm = (props) => {
 
 const EditPostFormValidated = withFormik({
   // Makes values props that holds the form state
-  mapPropsToValues: (props) => ({
-    title: '',
-    post: ''
-  }),
+  mapPropsToValues: (props) => {
+    const { id, data } = props;
+
+    return {
+      title: data.title,
+      post: data.content
+    };
+  },
 
   // Custom validation
   validate: (values) => {
     const errors = {};
 
     if (!values.title) {
-      errors.title = '必填欄位';
+      console.log('Values inside Errors:', values);
+      errors.title = '必填欄位!';
     }
 
     if (!values.post) {
-      errors.post = '必填欄位';
+      errors.post = '必填欄位!';
     }
 
     return errors;

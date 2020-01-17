@@ -8,6 +8,7 @@ const router = express.Router();
 const dev = process.env.NODE_ENV !== 'production';
 
 const Post = require('../models/Post');
+const Profile = require('../models/Profile');
 
 // cookie extra options
 const COOKIE_OPTIONS = {
@@ -122,7 +123,7 @@ router.post('/posts/:id', async (req, res) => {
   // Check if the post already exists via id, if so edit, else add new
   let postFound = false;
 
-  postFound = await Post.findById(req.params.id);
+  // postFound = await Post.findById(req.params.id);
 
   // generating new post obj to add to DB
   const post = new Post({
@@ -130,6 +131,8 @@ router.post('/posts/:id', async (req, res) => {
     content: req.body.content,
     date: new Date()
   });
+
+  await Post.findByIdAndUpdate(req.params.id, post);
 
   // using async await
   let postSaved;
@@ -157,6 +160,40 @@ router.post('/posts/delete/:id', async (req, res) => {
   const post = await Post.findByIdAndDelete(req.params.id);
 
   res.json(post);
+});
+
+/**
+ * Getting profile data
+ */
+router.get('/profile/sidebar', async (req, res) => {
+  try {
+    const profile = await Profile.find();
+
+    res.status(200).json(profile);
+  } catch (err) {
+    res.status(404);
+  }
+});
+
+/**
+ * Editing profile data
+ */
+router.post('/profile/sidebar', async (req, res) => {
+  const { title, content } = req.body;
+
+  const newProfileAbout = new Profile({
+    title: title ? title : 'About Me',
+    content: content
+  });
+
+  try {
+    await newProfileAbout.save();
+
+    res.status(200).json(newProfileAbout);
+  } catch (err) {
+    res.status(403).json();
+    console.log(err);
+  }
 });
 
 module.exports = router;
