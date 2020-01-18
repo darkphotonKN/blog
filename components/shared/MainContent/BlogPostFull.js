@@ -42,7 +42,12 @@ const BlogPostFull = ({ id, content, title, date, noContent }) => {
         </div>
 
         <div className="row">
-          <div className="blog-content mt-2 col-12">{content}</div>
+          <div className="blog-content mt-2 col-12 col-md-10 offset-md-1">
+            {' '}
+            {content.split('\n').map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
         </div>
 
         <div className="row">

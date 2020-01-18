@@ -3,7 +3,7 @@ const SideBar = () => {
     <div className="side-bar">
       <img src="/static/img/profile.png" alt="sidebar-portrait" />
       <div className="side-bar-wrap">
-        <h4 className="side-bar-title">About Me</h4>
+        <h4 className="side-bar-title text-center">the author</h4>
         <div className="side-bar-content">
           <p>我現在正在尋找自己人生的目標跟真正想做的事。</p>
           <p>

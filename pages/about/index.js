@@ -4,10 +4,11 @@ import QuoteBlock from '../../components/shared/MainContent/QuoteBlock';
 
 const AboutIndex = () => {
   return (
-    <Layout subtitle={'About'}>
+    <Layout subtitle={'About'} sidebar>
       <section id="about">
         <div className="row mt-4">
-          <div className="col-12 offset-0 offset-md-1 col-md-10">
+          {/* col-d-12 offset-0 offset-md-1 */}
+          <div className="col-12">
             <QuoteBlock
               content={'「你的氣質裡，藏著你走過的路，讀過的書和愛過的人。」'}
               author={'《卡薩布蘭卡》'}

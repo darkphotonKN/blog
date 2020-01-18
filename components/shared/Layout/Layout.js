@@ -32,7 +32,7 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
 const Layout = ({ subtitle, sidebar, children }) => {
-  const siteTitle = 'Girl on the Move';
+  const siteTitle = 'Girl Life Blog';
 
   return (
     <div className="app">

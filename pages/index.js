@@ -1,4 +1,4 @@
-import ReactPagination from 'react-paginate';
+import ReactPaginate from 'react-paginate';
 import moment from 'moment';
 
 import Layout from '../components/shared/Layout/Layout';
@@ -19,43 +19,83 @@ class Index extends React.Component {
   }
 
   state = {
-    posts: undefined
+    posts: undefined,
+    page: 1,
+    pageSize: 6
   };
 
   async componentDidMount() {
-    const posts = await fetchData('/api/posts');
+    const { page, pageSize } = this.state;
+
+    const posts = await fetchData(`/api/posts?page=${page}&size=${pageSize}`);
     this.setState({
-      posts
+      noOfPages: Math.ceil(posts.total / pageSize),
+      posts: posts.currentPosts
     });
   }
 
+  // Pagination
+  handlePageClick = async (page) => {
+    const upcomingPage = page.selected + 1;
+
+    let data;
+
+    try {
+      data = await fetchData(
+        `/api/posts?page=${upcomingPage}&size=${this.state.pageSize}`
+      );
+    } catch (err) {
+      console.log(`Error: ${err}`);
+    }
+
+    if (data) {
+      this.setState({
+        posts: data.currentPosts
+      });
+    }
+  };
+
   render() {
     const { blogPosts } = this.props;
-    const { posts } = this.state;
+    const { posts, noOfPages } = this.state;
 
     console.log('POSTS:', posts);
-    console.log('Blog POSTS:', blogPosts);
+    console.log('NO OF PAGES:', noOfPages);
 
     return (
       <Layout subtitle={'Latest Stories'} sidebar>
         <div className="blog-post-list">
           {posts ? (
-            posts
-              .reverse()
-              .map((post) => (
-                <BlogPost
-                  key={post._id}
-                  id={post._id}
-                  date={moment(post.date).format('YYYY/MM/DD')}
-                  content={post.content}
-                  title={post.title}
-                />
-              ))
+            posts.map((post) => (
+              <BlogPost
+                key={post._id}
+                id={post._id}
+                date={moment(post.date).format('YYYY/MM/DD')}
+                content={post.content}
+                title={post.title}
+              />
+            ))
           ) : (
             <Loading />
           )}
 
           {/* <Pagination /> */}
+          <div className="row pagination">
+            <div className="col-12 d-flex justify-content-center">
+              <ReactPaginate
+                previousLabel={'<'}
+                disabledClassName={'disabled'}
+                nextLabel={'>'}
+                pageCount={noOfPages}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={this.handlePageClick}
+                containerClassName={'pagination'}
+                subContainerClassName={'pages pagination'}
+                activeClassName={'active'}
+              />
+            </div>
+          </div>
         </div>
       </Layout>
     );

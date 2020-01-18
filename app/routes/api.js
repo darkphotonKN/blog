@@ -63,11 +63,26 @@ router.get('/profile', async (req, res) => {
  * Fetches list of all posts
  */
 router.get('/posts', async (req, res) => {
+  console.log('Page Length:', req.query.size);
+  console.log('Page Number:', req.query.page);
+
+  const { page, size } = req.query;
   try {
     const posts = await Post.find();
+    const total = posts.length;
     // if (userAuthenticated(req)) {
     // return to user the list of posts
-    res.json(posts);
+
+    let currentPosts = [];
+    if (size) {
+      // get requested page of posts
+      currentPosts = posts.reverse().splice((page - 1) * size, page * size);
+    } else {
+      // return all posts
+      currentPosts = posts.reverse();
+    }
+
+    res.json({ total, currentPosts });
     // } else throw err;
   } catch (err) {
     res.status(403).json('Forbidden access to list of posts.');

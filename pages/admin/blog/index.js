@@ -18,7 +18,7 @@ class BlogIndex extends React.Component {
     const blogPosts = await fetchData('/api/posts');
 
     this.setState({
-      blogPosts: blogPosts.reverse()
+      blogPosts: blogPosts.currentPosts
     });
   }
 
