@@ -45,7 +45,9 @@ const Layout = ({ subtitle, sidebar, children }) => {
           <div className="row sub-header mb-4">
             <div className="title col-md-4 col-12 offset-md-1 ">
               <div className="title-wrap">
-                <div className="subtitle">{subtitle}</div>
+                <div className="subtitle" id="subtitle">
+                  {subtitle}
+                </div>
                 <div className="underline" />
               </div>
             </div>

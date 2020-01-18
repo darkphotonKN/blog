@@ -23,7 +23,7 @@ class Nav extends React.Component {
         </div>
         <div className="col-md-5 col-12 text-center">
           <nav className="main-nav">
-            <ul className="nav-list d-none d-md-block">
+            <ul className="nav-list d-none d-md-block mb-0">
               <li className="list-item">
                 <Link prefetch href="/">
                   <a className={currentURL === '/' ? 'active' : ''}>Blog</a>
@@ -80,9 +80,7 @@ class Nav extends React.Component {
                   </a>
                 </Link>
               </li>
-            </ul>
-            <ul className="nav-list d-block d-md-none float-right mt-2">
-              <li className="list-item">
+              <li className="list-item ml-3">
                 <a href="https://www.instagram.com/kinkangaku/?hl=en">
                   <i className="fab fa-instagram" />
                 </a>
@@ -93,6 +91,18 @@ class Nav extends React.Component {
                 </a>
               </li>
             </ul>
+            {/* <ul className="nav-list d-block d-md-none float-right mt-2">
+              <li className="list-item">
+                <a href="https://www.instagram.com/kinkangaku/?hl=en">
+                  <i className="fab fa-instagram" />
+                </a>
+              </li>
+              <li className="list-item">
+                <a href="">
+                  <i className="fab fa-facebook-f" />
+                </a>
+              </li>
+            </ul> */}
           </nav>
 
           {/* Mobile fb and instagram */}
