@@ -5,11 +5,11 @@ const SideBar = () => {
       <div className="side-bar-wrap">
         <h4 className="side-bar-title text-center">the author</h4>
         <div className="side-bar-content">
-          <p>我現在正在尋找自己人生的目標跟真正想做的事。</p>
           <p>
-            因為沒有什麼方向，我失望過了一段時間可以經過成長後得到一些答案。
+            我是國文系畢業的，之後有當老師一陣子，發現不適合，現在看看有沒有更好的路。
           </p>
-          <p>目前我的工作只是平凡但被加班到死的秘書。</p>
+          <p>平常喜歡IG跟拍照。</p>
+          <p>目前我的工作是一直要加班的秘書, 但家裡有可愛的狗陪著所以還好。</p>
         </div>
       </div>
     </div>

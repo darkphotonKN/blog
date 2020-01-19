@@ -36,7 +36,7 @@ export default class AdminLayout extends React.Component {
                   <a>Blog Posts</a>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/admin/about">
                   <a>About</a>
                 </Link>
@@ -45,7 +45,7 @@ export default class AdminLayout extends React.Component {
                 <Link href="/admin/profile">
                   <a>Contact</a>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </nav>
         </div>
@@ -68,7 +68,7 @@ export default class AdminLayout extends React.Component {
                         <a>Blog Posts</a>
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link href="/admin/about">
                         <a>About</a>
                       </Link>
@@ -77,7 +77,7 @@ export default class AdminLayout extends React.Component {
                       <Link href="/admin/profile">
                         <a>Contact</a>
                       </Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </nav>
               </div>
