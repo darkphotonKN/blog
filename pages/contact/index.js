@@ -40,7 +40,7 @@ const ContactIndex = () => {
               </a>
             </div>
             <div className="col-4 text-center">
-              <a href="#">
+              <a href="https://www.instagram.com/kinkangaku/?hl=zh_tw">
                 <i className="fab fa-instagram mr-4" />
               </a>
             </div>

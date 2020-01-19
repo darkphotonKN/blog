@@ -1,4 +1,6 @@
+import Router from 'next/Router';
 import { withFormik } from 'formik';
+
 import { fetchData, postData } from '../../../api/helper';
 
 const EditPostForm = (props) => {
@@ -112,12 +114,13 @@ const EditPostFormValidated = withFormik({
     console.log('Post Values Before:', values);
     console.log('And props:', props);
 
-    const { data } = await postData('/api/posts', {
+    const { data } = await postData(`/api/posts/${props.id}`, {
       title: values.title,
       content: values.post
     });
-
     console.log('Data after posting:', data);
+
+    Router.push('/admin/blog');
   },
 
   displayName: 'BasicForm'

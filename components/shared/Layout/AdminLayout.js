@@ -17,7 +17,13 @@ export default class AdminLayout extends React.Component {
       <div className="admin-app">
         <AdminBar user={user} />
         {/* mobile nav */}
-        <div className="nav-section mobile mt-4 d-block d-md-none">
+        <div
+          className={
+            loginPage
+              ? 'nav-section mobile mt-4'
+              : 'nav-section mobile mt-4 d-block d-md-none'
+          }
+        >
           <nav>
             <ul>
               <li>

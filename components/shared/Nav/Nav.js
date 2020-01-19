@@ -47,7 +47,7 @@ class Nav extends React.Component {
               {/* Intagram */}
 
               <li className="list-item">
-                <a href="https://www.instagram.com/kinkangaku/?hl=en">
+                <a href="https://www.instagram.com/kinkangaku/?hl=zh_tw">
                   <i className="fab fa-instagram" />
                 </a>
               </li>
@@ -81,7 +81,7 @@ class Nav extends React.Component {
                 </Link>
               </li>
               <li className="list-item ml-3">
-                <a href="https://www.instagram.com/kinkangaku/?hl=en">
+                <a href="https://www.instagram.com/kinkangaku/?hl=zh_tw">
                   <i className="fab fa-instagram" />
                 </a>
               </li>

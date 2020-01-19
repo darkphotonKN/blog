@@ -49,9 +49,12 @@ class Index extends React.Component {
     }
 
     if (data) {
-      this.setState({
-        posts: data.currentPosts
-      });
+      this.setState(
+        {
+          posts: data.currentPosts
+        },
+        () => window.scrollTo(0, 0)
+      );
     }
   };
 

@@ -36,7 +36,9 @@ const Footer = ({ title }) => {
               </li>
               <li>
                 <i className="fab fa-instagram mr-4" />
-                <a href="#">Instagram</a>
+                <a href="https://www.instagram.com/kinkangaku/?hl=zh_tw">
+                  Instagram
+                </a>
               </li>
             </ul>
           </div>

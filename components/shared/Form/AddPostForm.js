@@ -109,10 +109,9 @@ const AddPostFormValidated = withFormik({
       title: values.title,
       content: values.post
     });
+    console.log('Data after posting:', data);
 
     Router.push('/admin/blog');
-
-    console.log('Data after posting:', data);
   },
 
   displayName: 'BasicForm'

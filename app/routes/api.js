@@ -135,9 +135,6 @@ router.post('/posts', async (req, res) => {
  * Editing a blog post
  */
 router.post('/posts/:id', async (req, res) => {
-  // Check if the post already exists via id, if so edit, else add new
-  let postFound = false;
-
   // postFound = await Post.findById(req.params.id);
 
   // generating new post obj to add to DB
@@ -147,13 +144,19 @@ router.post('/posts/:id', async (req, res) => {
     date: new Date()
   });
 
-  await Post.findByIdAndUpdate(req.params.id, post);
-
-  // using async await
-  let postSaved;
-
   try {
-    postSaved = await post.save();
+    // find and update post
+    const postSaved = await Post.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        title: req.body.title,
+        content: req.body.content,
+        date: new Date()
+      }
+    );
+
+    // using async await
+
     res.status(200).json(postSaved);
   } catch (err) {
     res.status(403).json(err);
