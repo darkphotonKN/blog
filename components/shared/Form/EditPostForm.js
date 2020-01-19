@@ -1,4 +1,4 @@
-import Router from 'next/Router';
+import Router from 'next/router';
 import { withFormik } from 'formik';
 
 import { fetchData, postData } from '../../../api/helper';
