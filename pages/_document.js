@@ -24,6 +24,23 @@ export default class MyDocument extends Document {
 
           {/* Main CSS */}
           <link rel="stylesheet" href="/static/css/main.css" />
+          {/* Favicon */}
+          <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="/static/favicon.ico"
+          />
+          <link
+            rel="apple-touch-icon"
+            type="image/x-icon"
+            href="/static/apple-touch-icon.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="32×32"
+            type="image/x-icon"
+            href="/static/favicon-32x32.png"
+          />
         </Head>
 
         <body>

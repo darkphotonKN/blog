@@ -37,7 +37,7 @@ const Layout = ({ subtitle, sidebar, children }) => {
   return (
     <div className="app">
       <Head>
-        <title>Blog App</title>
+        <title>Kin's Blog</title>
       </Head>
       <div className="bg-overlay">
         <div className="container-fluid main-area px-md-0">
