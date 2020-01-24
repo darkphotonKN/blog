@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
@@ -7,6 +8,8 @@ import Nav from '../Nav/Nav';
 import MainTitle from '../../shared/MainTitle';
 import SideBar from '../../shared/Layout/SideBar';
 import Footer from '../../shared/Layout/Footer';
+
+import { fetchData } from '../../../api/helper';
 
 /* 
   Props 
@@ -32,6 +35,21 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
 const Layout = ({ subtitle, sidebar, children }) => {
+  const [profileData, setProfileData] = useState(undefined);
+
+  useEffect(() => {
+    async function getData() {
+      const profileData = await fetchData('/api/profile/all');
+      const profileSideBarData = profileData.find(
+        (item) => item.type === 'sidebar'
+      );
+      console.log('Layout Profile Data ', profileData);
+      setProfileData(profileSideBarData);
+    }
+
+    getData();
+  }, []);
+
   const siteTitle = 'Girl Life Blog';
 
   return (
@@ -60,7 +78,7 @@ const Layout = ({ subtitle, sidebar, children }) => {
                 </div>
 
                 <div className="col-md-4 offset-md-0 col-lg-3 offset-lg-1 col-10 offset-1">
-                  <SideBar />
+                  <SideBar data={profileData} />
                 </div>
               </>
             ) : (

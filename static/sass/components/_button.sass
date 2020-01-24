@@ -50,3 +50,24 @@ button
     margin-left: 5px
     background-color: #fff
     color: $color-secondary
+
+button.delete-btn
+  background-color: $color-red
+  color: #fff
+
+  &:hover
+    background-color: darken($color-red, 10%)
+
+button.edit-btn
+  background-color: $color-hover
+  color: $color-primary
+
+  &:hover
+    background-color: darken($color-hover, 10%)
+
+button.delete-btn, button.edit-btn
+  border-radius: 4px
+  padding: 4px 12px
+  animation: fade-up 300ms ease-in-out forwards
+  display: none
+  transition: all 200ms ease-in-out

@@ -39,7 +39,7 @@ class BlogIndex extends React.Component {
 
     return (
       <AdminLayout user={this.props.user}>
-        <section id="admin-blog">
+        <section id="admin-pages">
           <div className="row">
             <div className="col-12 text-right">
               <Link href="/admin/blog/add">
@@ -50,20 +50,13 @@ class BlogIndex extends React.Component {
 
           {blogPosts ? (
             blogPosts.map((post, index) => (
-              <div className="post row col-12 col-md-10 pr-0" key={post._id}>
+              <div className="post row pr-0" key={post._id}>
                 {deletedPost && deletedPost._id === post._id ? (
                   <div className="mt-4 col-12 col-md-10 pr-0">
                     <div className="post-no">Post {index + 1}</div>
                     <hr />
-                    <div className="title">
+                    <div>
                       <span>名稱</span> {post.title}{' '}
-                      <button
-                        className="delete-btn"
-                        onClick={() => this.handleDelete(post._id)}
-                        style={{ float: 'right' }}
-                      >
-                        刪除
-                      </button>
                     </div>
                     <div className="date">
                       <span>日期</span> {moment(post.date).format('YYYY/MM/DD')}
@@ -78,15 +71,22 @@ class BlogIndex extends React.Component {
                     <div className="mt-4 col-12 col-md-10 pr-0">
                       <div className="post-no">Post {index + 1}</div>
                       <hr />
-                      <div className="title">
+                      <div>
                         <span>名稱</span> {post.title}{' '}
-                        <button
-                          className="delete-btn"
-                          onClick={(e) => this.handleDelete(e, post._id)}
+                        <div
+                          className="btns d-flex justify-content-center"
                           style={{ float: 'right' }}
                         >
-                          刪除
-                        </button>
+                          <Link href={`/admin/blog/edit?id=${post._id}`}>
+                            <button className="edit-btn mr-3">更新</button>
+                          </Link>
+                          <button
+                            className="delete-btn"
+                            onClick={(e) => this.handleDelete(e, post._id)}
+                          >
+                            刪除
+                          </button>
+                        </div>
                       </div>
                       <div className="date">
                         <span>日期</span>{' '}

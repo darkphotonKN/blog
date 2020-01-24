@@ -138,11 +138,11 @@ router.post('/posts/:id', async (req, res) => {
   // postFound = await Post.findById(req.params.id);
 
   // generating new post obj to add to DB
-  const post = new Post({
-    title: req.body.title,
-    content: req.body.content,
-    date: new Date()
-  });
+  // const post = new Post({
+  //   title: req.body.title,
+  //   content: req.body.content,
+  //   date: new Date()
+  // });
 
   try {
     // find and update post
@@ -181,9 +181,9 @@ router.post('/posts/delete/:id', async (req, res) => {
 });
 
 /**
- * Getting profile data
+ * Getting profile edit data
  */
-router.get('/profile/sidebar', async (req, res) => {
+router.get('/profile/all', async (req, res) => {
   try {
     const profile = await Profile.find();
 
@@ -194,24 +194,56 @@ router.get('/profile/sidebar', async (req, res) => {
 });
 
 /**
- * Editing profile data
+ * Editing profile sidebar data
  */
 router.post('/profile/sidebar', async (req, res) => {
   const { title, content } = req.body;
 
-  const newProfileAbout = new Profile({
-    title: title ? title : 'About Me',
-    content: content
-  });
+  // const newProfileAbout = new Profile({
+  //   type: 'sidebar',
+  //   title: title ? title : 'the author',
+  //   content: content
+  // });
 
   try {
-    await newProfileAbout.save();
+    // await Profile.findOneAndDelete('5e26afb465c134bf114360d8');
+    const profileSaved = await Profile.findOneAndUpdate(
+      { type: 'sidebar' },
+      {
+        title: title ? title : 'the author',
+        content: content
+      }
+    );
 
-    res.status(200).json(newProfileAbout);
+    res.status(200).json(profileSaved);
   } catch (err) {
     res.status(403).json();
     console.log(err);
   }
 });
+
+/**
+ * Editing profile about data
+ */
+
+router.post('/profile/about', async (req, res) => {
+  const { content } = req.body;
+
+  try {
+    const profileSaved = await Profile.findOneAndUpdate(
+      { type: 'about' },
+      { content }
+    );
+
+    res.status(200).json(profileSaved);
+  } catch (err) {
+    res.status(403).json();
+    console.log(err);
+  }
+});
+
+/**
+ * Editing profile contact data
+ */
 
 module.exports = router;

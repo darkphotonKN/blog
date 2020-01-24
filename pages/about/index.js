@@ -1,8 +1,27 @@
-import Layout from '../../components/shared/Layout/Layout';
+import { useState, useEffect } from 'react';
 
+import Layout from '../../components/shared/Layout/Layout';
 import QuoteBlock from '../../components/shared/MainContent/QuoteBlock';
 
+import { fetchData } from '../../api/helper';
+
 const AboutIndex = () => {
+  const [data, setData] = useState(undefined);
+
+  useEffect(() => {
+    async function getData() {
+      const profileData = await fetchData('/api/profile/all');
+
+      const aboutData = profileData.find((item) => item.type === 'about');
+
+      setData(aboutData);
+    }
+
+    getData();
+  }, []);
+
+  console.log('About Data:', data);
+
   return (
     <Layout subtitle={'About'} sidebar>
       <section id="about">
@@ -15,36 +34,13 @@ const AboutIndex = () => {
             />
 
             <div className="main-content mt-4">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Exercitationem officiis, quos iure voluptas, voluptatem harum,
-                fuga earum illo ea quasi id. Incidunt ut in atque tempora, odio
-                dicta cupiditate sunt.
-              </p>
-
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque
-                natus exercitationem vitae necessitatibus autem. Ipsam officiis
-                eius magni tempora porro!
-              </p>
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-                autem sint reprehenderit iure, distinctio labore odio,
-                voluptatum exercitationem nostrum sapiente aut debitis ea!
-                Veritatis sunt aut velit, modi ipsum nostrum ducimus sapiente
-                deleniti. Speriores officiis perspiciatis tempora quaerat natus
-                non! Perspiciatis, odio. Voluptate delectus repellendus
-                perferendis atque pariatur quis tempore nisi fugit laborum?
-                Autem maiores illum expedita laborum tenetur rerum.
-              </p>
-
-              <p>
-                Unde mollitia enim minima delectus quos officia voluptas
-                accusantium libero fuga deserunt laborum accusamus harum rerum
-                rem debitis quod, vero veritatis tenetur ipsum labore. Minus ab
-                facere mollitia, molestiae commodi nam est distinctio.
-              </p>
+              {data
+                ? data.content
+                    .split('\n')
+                    .map((paragraph) => (
+                      <p key={paragraph.slice(0, 5)}>{paragraph}</p>
+                    ))
+                : null}
             </div>
           </div>
         </div>

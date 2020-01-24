@@ -6,6 +6,7 @@ import BackButton from '../../../components/shared/MainContent/BackButton';
 
 import { fetchData } from '../../../api/helper';
 import withAuthentication from '../../../components/HOC/withAuthentication';
+import Layout from '../../../components/shared/Layout/Layout';
 
 const AdminBlogEdit = (props) => {
   console.log('AdminBlogEdit Props:', props);

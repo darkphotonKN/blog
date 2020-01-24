@@ -28,6 +28,7 @@ class Index extends React.Component {
     const { page, pageSize } = this.state;
 
     const posts = await fetchData(`/api/posts?page=${page}&size=${pageSize}`);
+
     this.setState({
       noOfPages: Math.ceil(posts.total / pageSize),
       posts: posts.currentPosts
@@ -83,22 +84,24 @@ class Index extends React.Component {
           )}
 
           {/* <Pagination /> */}
-          <div className="row pagination">
-            <div className="col-12 d-flex justify-content-center">
-              <ReactPaginate
-                previousLabel={'<'}
-                disabledClassName={'disabled'}
-                nextLabel={'>'}
-                pageCount={noOfPages}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={this.handlePageClick}
-                containerClassName={'pagination'}
-                subContainerClassName={'pages pagination'}
-                activeClassName={'active'}
-              />
+          {posts ? (
+            <div className="row pagination">
+              <div className="col-12 d-flex justify-content-center">
+                <ReactPaginate
+                  previousLabel={'<'}
+                  disabledClassName={'disabled'}
+                  nextLabel={'>'}
+                  pageCount={noOfPages}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={this.handlePageClick}
+                  containerClassName={'pagination'}
+                  subContainerClassName={'pages pagination'}
+                  activeClassName={'active'}
+                />
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </Layout>
     );

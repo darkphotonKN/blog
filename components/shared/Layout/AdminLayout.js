@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 
 import AdminBar from '../MainContent/AdminBar';
@@ -15,6 +16,9 @@ export default class AdminLayout extends React.Component {
 
     return (
       <div className="admin-app">
+        <Head>
+          <title>用戶專區</title>
+        </Head>
         <AdminBar user={user} />
         {/* mobile nav */}
         <div
