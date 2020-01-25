@@ -26,6 +26,7 @@ require('dotenv').config();
 
 // api routes
 const api = require('./routes/api');
+const profile = require('./routes/profile');
 
 // User Info
 const userData = {
@@ -71,6 +72,7 @@ app.prepare().then(() => {
    * API ROUTES
    */
   server.use('/api', api);
+  server.use('/api/profile', profile);
 
   // handle get request to all routes
   server.get('*', (req, res) => {

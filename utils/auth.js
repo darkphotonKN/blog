@@ -15,6 +15,7 @@ export const loginUser = async (username, password) => {
 export const checkUserAuthenticated = async () => {
   const response = await fetchData('/api/profile');
 
+  console.log('checkUserAuthenticated api/profile response:', response);
   return response;
 };
 

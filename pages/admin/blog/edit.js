@@ -16,6 +16,7 @@ const AdminBlogEdit = (props) => {
   useEffect(() => {
     async function getData() {
       const data = await fetchData(`/api/posts/${props.query.id}`);
+
       setData(data);
     }
 

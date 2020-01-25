@@ -1,14 +1,15 @@
 const express = require('express');
+const router = express.Router();
 
 const serverAuth = require('../utils/serverAuth');
 const authenticate = serverAuth.authenticate;
 const userAuthenticated = serverAuth.userAuthenticated;
 
-const router = express.Router();
 const dev = process.env.NODE_ENV !== 'production';
 
 const Post = require('../models/Post');
 const Profile = require('../models/Profile');
+const profile = require('./profile');
 
 // cookie extra options
 const COOKIE_OPTIONS = {
@@ -42,21 +43,6 @@ router.post('/login', async (req, res) => {
 
   // return user info
   res.json(userData);
-});
-
-/**
- * Getting user profile
- */
-router.get('/profile', async (req, res) => {
-  // if user is authenticated (checks signed cookies from request)
-  try {
-    if (userAuthenticated(req)) {
-      // send response back to user
-      res.json(userData);
-    } else throw err;
-  } catch (err) {
-    res.status(403).json('Forbidden access to profile');
-  }
 });
 
 /**
@@ -117,18 +103,13 @@ router.post('/posts', async (req, res) => {
   let postSaved;
 
   try {
-    postSaved = await post.save();
-    res.status(200).json(postSaved);
+    if (userAuthenticated(req)) {
+      postSaved = await post.save();
+      res.status(200).json(postSaved);
+    } else throw Error('User not authenticated.');
   } catch (err) {
     res.status(403).json(err);
   }
-
-  // using promise
-  // post.save()
-  // .then((data) => {
-  //   res.status(200).json(data);
-  // })
-  // .catch((err) => res.status(403).send(err));
 });
 
 /**
@@ -145,15 +126,19 @@ router.post('/posts/:id', async (req, res) => {
   // });
 
   try {
-    // find and update post
-    const postSaved = await Post.findOneAndUpdate(
-      { _id: req.params.id },
-      {
-        title: req.body.title,
-        content: req.body.content,
-        date: new Date()
-      }
-    );
+    if (userAuthenticated(req)) {
+      // find and update post
+      const postSaved = await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          title: req.body.title,
+          content: req.body.content,
+          date: new Date()
+        }
+      );
+
+      res.status(201).json(postSaved);
+    } else throw Error('User not authenticated.');
 
     // using async await
 
@@ -161,13 +146,6 @@ router.post('/posts/:id', async (req, res) => {
   } catch (err) {
     res.status(403).json(err);
   }
-
-  // using promise
-  // post.save()
-  // .then((data) => {
-  //   res.status(200).json(data);
-  // })
-  // .catch((err) => res.status(403).send(err));
 });
 
 /**
@@ -175,75 +153,14 @@ router.post('/posts/:id', async (req, res) => {
  */
 
 router.post('/posts/delete/:id', async (req, res) => {
-  const post = await Post.findByIdAndDelete(req.params.id);
-
-  res.json(post);
-});
-
-/**
- * Getting profile edit data
- */
-router.get('/profile/all', async (req, res) => {
   try {
-    const profile = await Profile.find();
-
-    res.status(200).json(profile);
+    if (userAuthenticated(req)) {
+      const post = await Post.findByIdAndDelete(req.params.id);
+      res.json(post);
+    } else throw Error('User not authenticated.');
   } catch (err) {
-    res.status(404);
+    res.status(403).json(err);
   }
 });
-
-/**
- * Editing profile sidebar data
- */
-router.post('/profile/sidebar', async (req, res) => {
-  const { title, content } = req.body;
-
-  // const newProfileAbout = new Profile({
-  //   type: 'sidebar',
-  //   title: title ? title : 'the author',
-  //   content: content
-  // });
-
-  try {
-    // await Profile.findOneAndDelete('5e26afb465c134bf114360d8');
-    const profileSaved = await Profile.findOneAndUpdate(
-      { type: 'sidebar' },
-      {
-        title: title ? title : 'the author',
-        content: content
-      }
-    );
-
-    res.status(200).json(profileSaved);
-  } catch (err) {
-    res.status(403).json();
-    console.log(err);
-  }
-});
-
-/**
- * Editing profile about data
- */
-
-router.post('/profile/about', async (req, res) => {
-  const { content } = req.body;
-
-  try {
-    const profileSaved = await Profile.findOneAndUpdate(
-      { type: 'about' },
-      { content }
-    );
-
-    res.status(200).json(profileSaved);
-  } catch (err) {
-    res.status(403).json();
-    console.log(err);
-  }
-});
-
-/**
- * Editing profile contact data
- */
 
 module.exports = router;

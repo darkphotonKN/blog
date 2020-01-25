@@ -34,6 +34,8 @@ const withAuthentication = (WrappedComponent) => {
       // check for authenticated user from server
       const authenticatedUser = await checkUserAuthenticated();
 
+      console.log('Authentication Response:', authenticatedUser);
+
       this.setState({
         authenticatedUser
       });
