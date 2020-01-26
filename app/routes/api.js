@@ -8,8 +8,6 @@ const userAuthenticated = serverAuth.userAuthenticated;
 const dev = process.env.NODE_ENV !== 'production';
 
 const Post = require('../models/Post');
-const Profile = require('../models/Profile');
-const profile = require('./profile');
 
 // cookie extra options
 const COOKIE_OPTIONS = {

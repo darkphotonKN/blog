@@ -22,8 +22,8 @@ export default class MyDocument extends Document {
             href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.css"
           />
 
-          {/* Main CSS */}
-          <link rel="stylesheet" href="/static/css/main.css" />
+          {/* Main CSS (NOW IMPORTED IN _app.js) */}
+          {/* <link rel="stylesheet" href="/static/css/main.css" /> */}
           {/* Favicon */}
           <link
             rel="shortcut icon"
